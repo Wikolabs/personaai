@@ -9,29 +9,29 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Log in to GHCR
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
-
-      - name: Build and push Docker image
-        run: |
-          docker build -t ghcr.io/wikolabs/personaai:latest .
-          docker push ghcr.io/wikolabs/personaai:latest
-
       - name: Deploy to VM via SSH
         env:
           SSH_PRIVATE_KEY: ${{ secrets.WIKOLABS_VM_SSH_KEY }}
           VM_HOST: ${{ secrets.WIKOLABS_VM_HOST }}
           VM_USER: ${{ secrets.WIKOLABS_VM_USER }}
-          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GHCR_USER: ${{ github.actor }}
+          GITHUB_TOKEN_VAL: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H "$VM_HOST" >> ~/.ssh/known_hosts 2>/dev/null
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no "$VM_USER@$VM_HOST"             "echo '$GHCR_TOKEN' | docker login ghcr.io -u '$GHCR_USER' --password-stdin             && docker pull ghcr.io/wikolabs/personaai:latest             && (docker stop personaai 2>/dev/null; docker rm personaai 2>/dev/null; true)             && docker run -d --name personaai -p 3017:3000 --restart unless-stopped ghcr.io/wikolabs/personaai:latest             && echo 'Deployed personaai on port 3017'"
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no "$VM_USER@$VM_HOST" "
+            set -e
+            rm -rf /tmp/build_personaai
+            git clone --depth 1 https://${GITHUB_TOKEN_VAL}@github.com/${REPO}.git /tmp/build_personaai
+            cd /tmp/build_personaai
+            docker build -t wikolabs/personaai:local -q .
+            docker stop personaai 2>/dev/null || true
+            docker rm personaai 2>/dev/null || true
+            docker run -d --name personaai -p 3017:3000 --restart unless-stopped wikolabs/personaai:local
+            rm -rf /tmp/build_personaai
+            echo 'personaai deployed on port 3017'
+          "
