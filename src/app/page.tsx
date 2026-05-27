@@ -89,21 +89,42 @@
           Deux visiteurs, deux expériences. PersonaAI analyse les comportements en temps réel
           et délivre la recommandation la plus pertinente à chaque individu.
         </p>
-        <a
-          href="https://calendly.com/wikolabs" target="_blank" rel="noopener noreferrer"
-          style={{
-            backgroundColor: "#991b1b",
-            color: "#fff",
-            padding: "0.85rem 2.2rem",
-            borderRadius: "4px",
-            textDecoration: "none",
-            fontSize: "1rem",
-            fontWeight: 600,
-            letterSpacing: "0.04em",
-          }}
-        >
-          Voir la démo live
-        </a>
+        <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+          <a
+            href="https://calendly.com/wikolabs"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              backgroundColor: "#991b1b",
+              color: "#fff",
+              padding: "0.85rem 2.2rem",
+              borderRadius: "4px",
+              textDecoration: "none",
+              fontSize: "1rem",
+              fontWeight: 600,
+              letterSpacing: "0.04em",
+            }}
+          >
+            📅 Réserver un créneau →
+          </a>
+          <a
+            href="https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20PersonaAI%20avec%20Wikolabs."
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              backgroundColor: "#25d366",
+              color: "#fff",
+              padding: "0.85rem 2.2rem",
+              borderRadius: "4px",
+              textDecoration: "none",
+              fontSize: "1rem",
+              fontWeight: 600,
+              letterSpacing: "0.04em",
+            }}
+          >
+            💬 WhatsApp →
+          </a>
+        </div>
       </section>
 
       {/* Profiles comparison */}
@@ -261,21 +282,43 @@
         <p style={{ color: "#450a0a", fontFamily: "var(--font-display)", fontStyle: "italic", marginBottom: "2rem" }}>
           Déploiement en 1 semaine. ROI mesurable dès le premier mois.
         </p>
-        <a
-          href="https://calendly.com/wikolabs" target="_blank" rel="noopener noreferrer"
-          style={{
-            border: "2px solid #991b1b",
-            color: "#991b1b",
-            padding: "0.85rem 2.5rem",
-            borderRadius: "4px",
-            textDecoration: "none",
-            fontWeight: 700,
-            fontSize: "1rem",
-            letterSpacing: "0.04em",
-          }}
-        >
-          Nous contacter
-        </a>
+        <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+          <a
+            href="https://calendly.com/wikolabs"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              border: "2px solid #991b1b",
+              color: "#991b1b",
+              padding: "0.85rem 2.5rem",
+              borderRadius: "4px",
+              textDecoration: "none",
+              fontWeight: 700,
+              fontSize: "1rem",
+              letterSpacing: "0.04em",
+            }}
+          >
+            📅 Réserver un créneau →
+          </a>
+          <a
+            href="https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20PersonaAI%20avec%20Wikolabs."
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              backgroundColor: "#25d366",
+              border: "2px solid #25d366",
+              color: "#fff",
+              padding: "0.85rem 2.5rem",
+              borderRadius: "4px",
+              textDecoration: "none",
+              fontWeight: 700,
+              fontSize: "1rem",
+              letterSpacing: "0.04em",
+            }}
+          >
+            💬 WhatsApp →
+          </a>
+        </div>
       </section>
 
       {/* Footer */}
