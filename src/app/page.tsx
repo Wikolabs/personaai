@@ -27,7 +27,7 @@
           PersonaAI
         </span>
         <a
-          href="mailto:contact@wikolabs.com"
+          href="https://calendly.com/wikolabs" target="_blank" rel="noopener noreferrer"
           style={{
             backgroundColor: "#991b1b",
             color: "#fff",
@@ -90,7 +90,7 @@
           et délivre la recommandation la plus pertinente à chaque individu.
         </p>
         <a
-          href="mailto:contact@wikolabs.com"
+          href="https://calendly.com/wikolabs" target="_blank" rel="noopener noreferrer"
           style={{
             backgroundColor: "#991b1b",
             color: "#fff",
@@ -262,7 +262,7 @@
           Déploiement en 1 semaine. ROI mesurable dès le premier mois.
         </p>
         <a
-          href="mailto:contact@wikolabs.com"
+          href="https://calendly.com/wikolabs" target="_blank" rel="noopener noreferrer"
           style={{
             border: "2px solid #991b1b",
             color: "#991b1b",
