@@ -26,9 +26,8 @@
         >
           PersonaAI
         </span>
-        <a
-          href="https://calendly.com/wikolabs" target="_blank" rel="noopener noreferrer"
-          style={{
+        <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' type="button"
+            style={{
             backgroundColor: "#991b1b",
             color: "#fff",
             padding: "0.55rem 1.4rem",
@@ -37,10 +36,9 @@
             fontSize: "0.875rem",
             fontWeight: 600,
             letterSpacing: "0.04em",
-          }}
-        >
+          }}>
           Demander une démo
-        </a>
+        </button>
       </nav>
 
       {/* Hero */}
@@ -90,10 +88,7 @@
           et délivre la recommandation la plus pertinente à chaque individu.
         </p>
         <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-          <a
-            href="https://calendly.com/wikolabs"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' type="button"
             style={{
               backgroundColor: "#991b1b",
               color: "#fff",
@@ -103,10 +98,9 @@
               fontSize: "1rem",
               fontWeight: 600,
               letterSpacing: "0.04em",
-            }}
-          >
+            }}>
             📅 Réserver un créneau →
-          </a>
+          </button>
           <a
             href="https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20PersonaAI%20avec%20Wikolabs."
             target="_blank"
@@ -283,10 +277,7 @@
           Déploiement en 1 semaine. ROI mesurable dès le premier mois.
         </p>
         <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-          <a
-            href="https://calendly.com/wikolabs"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' type="button"
             style={{
               border: "2px solid #991b1b",
               color: "#991b1b",
@@ -296,10 +287,9 @@
               fontWeight: 700,
               fontSize: "1rem",
               letterSpacing: "0.04em",
-            }}
-          >
+            }}>
             📅 Réserver un créneau →
-          </a>
+          </button>
           <a
             href="https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20PersonaAI%20avec%20Wikolabs."
             target="_blank"
