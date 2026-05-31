@@ -1,0 +1,36 @@
+version: "3.9"
+
+# personaai demo — production-ready POC.
+# 2 services orchestrated:
+#   - personaai (Next.js frontend on host port 3017)
+#   - personaai-backend (FastAPI Python, internal only on 8000)
+# Internal network so the frontend can reach the backend by service name.
+
+services:
+  personaai-backend:
+    image: ghcr.io/wikolabs/personaai-backend:latest
+    container_name: personaai-backend
+    restart: unless-stopped
+    environment:
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+    networks:
+      - personaai-net
+
+  personaai:
+    image: ghcr.io/wikolabs/personaai:latest
+    container_name: personaai
+    restart: unless-stopped
+    ports:
+      - "3017:3000"
+    environment:
+      BACKEND_URL: "http://personaai-backend:8000"
+    depends_on:
+      - personaai-backend
+    networks:
+      - personaai-net
+
+networks:
+  personaai-net:
+    name: personaai-net
+    driver: bridge
