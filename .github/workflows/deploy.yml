@@ -18,20 +18,11 @@ jobs:
           VM_USER: ${{ secrets.WIKOLABS_VM_USER }}
           GITHUB_TOKEN_VAL: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H "$VM_HOST" >> ~/.ssh/known_hosts 2>/dev/null
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no "$VM_USER@$VM_HOST" "
-            set -e
-            rm -rf /tmp/build_personaai
-            git clone --depth 1 https://${GITHUB_TOKEN_VAL}@github.com/${REPO}.git /tmp/build_personaai
-            cd /tmp/build_personaai
-            docker build -t wikolabs/personaai:local -q .
-            docker stop personaai 2>/dev/null || true
-            docker rm personaai 2>/dev/null || true
-            docker run -d --name personaai -p 3017:3000 --restart unless-stopped wikolabs/personaai:local
-            rm -rf /tmp/build_personaai
-            echo 'personaai deployed on port 3017'
-          "
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no "$VM_USER@$VM_HOST" "set -e && rm -rf /tmp/build_personaai && git clone --depth 1 https://${GITHUB_TOKEN_VAL}@github.com/${REPO}.git /tmp/build_personaai && cd /tmp/build_personaai && docker build -t wikolabs/personaai:local -q . && (docker stop personaai 2>/dev/null; docker rm personaai 2>/dev/null; true) && docker run -d --name personaai -p 3017:3000 -e GROQ_API_KEY='$GROQ_API_KEY' -e GEMINI_API_KEY='$GEMINI_API_KEY' --restart unless-stopped wikolabs/personaai:local && rm -rf /tmp/build_personaai && echo 'personaai deployed on port 3017'"
