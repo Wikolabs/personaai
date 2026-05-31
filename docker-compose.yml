@@ -1,10 +1,11 @@
 version: "3.9"
 
-# personaai demo — production-ready POC.
+# personaai demo - production-ready POC.
 # 2 services orchestrated:
 #   - personaai (Next.js frontend on host port 3017)
 #   - personaai-backend (FastAPI Python, internal only on 8000)
-# Internal network so the frontend can reach the backend by service name.
+# Shared external network wkdemo-net (created once by deploy.yml) avoids
+# Docker default address-pool exhaustion across all 47 LP stacks.
 
 services:
   personaai-backend:
@@ -15,10 +16,22 @@ services:
       GROQ_API_KEY: ${GROQ_API_KEY:-}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
     networks:
+      - wkdemo_net
+
+  personaai:
+    image: ghcr.io/wikolabs/personaai:latest
+    container_name: personaai
+    restart: unless-stopped
+    ports:
+      - "3017:3000"
+    environment:
+      BACKEND_URL: "http://personaai-backend:8000"
+    depends_on:
+      - personaai-backend
+    networks:
+      - wkdemo_net
+
+networks:
   wkdemo_net:
     name: wkdemo-net
     external: true
-networks:
-  personaai-net:
-    name: personaai-net
-    driver: bridge
