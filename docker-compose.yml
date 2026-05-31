@@ -15,21 +15,9 @@ services:
       GROQ_API_KEY: ${GROQ_API_KEY:-}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
     networks:
-      - personaai-net
-
-  personaai:
-    image: ghcr.io/wikolabs/personaai:latest
-    container_name: personaai
-    restart: unless-stopped
-    ports:
-      - "3017:3000"
-    environment:
-      BACKEND_URL: "http://personaai-backend:8000"
-    depends_on:
-      - personaai-backend
-    networks:
-      - personaai-net
-
+  wkdemo_net:
+    name: wkdemo-net
+    external: true
 networks:
   personaai-net:
     name: personaai-net
